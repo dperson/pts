@@ -8,7 +8,8 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends curl build-essential unzip \
                 perl perl-base perl-modules libsdl-perl libperl-dev \
-                libpcre3-dev mesa-utils php5-cli php5-gd php5-json && \
+                libpcre3-dev mesa-utils php5-cli php5-gd php5-json \
+                $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     apt-get clean && \
     curl -LOC- -s http://www.phoronix-test-suite.com/releases/repo/pts.debian/files/phoronix-test-suite_${version}_all.deb && \
     sha256sum phoronix-test-suite_${version}_all.deb | grep -q "$sha256sum" && \
