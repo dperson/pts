@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM debian:jessie
 MAINTAINER David Personette <dperson@dperson.com>
 
 # Install PTS
@@ -16,4 +16,4 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     dpkg -i phoronix-test-suite_${version}_all.deb && \
     rm -rf /var/lib/apt/lists/* /tmp/* phoronix-test-suite_${version}_all.deb
 
-ENTRYPOINT ["phoronix-test-suite"]
+CMD phoronix-test-suite
