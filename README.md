@@ -1,4 +1,4 @@
-[![logo](http://www.phoronix-test-suite.com/web/pts-logo-60.png)](http://www.phoronix-test-suite.com/)
+[![logo](https://raw.githubusercontent.com/dperson/pts/master/logo.png)](http://www.phoronix-test-suite.com/)
 
 # Phoronix Test Suite
 
