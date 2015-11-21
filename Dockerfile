@@ -4,8 +4,8 @@ MAINTAINER David Personette <dperson@dperson.com>
 # Install PTS
 RUN export DEBIAN_FRONTEND='noninteractive' && \
     export url='http://www.phoronix-test-suite.com/releases/repo/pts.debian' &&\
-    export version='6.0.0' && \
-    export sha256sum='a5ac35c94443a6b689d0bb96b98ea59985d2f11bf65b03dd1f43' && \
+    export version='6.0.1' && \
+    export sha256sum='7d6c8bc275f4625b970ada96b68a2d5a5d54e6d088e4d3ed120f' && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends curl build-essential unzip \
                 perl perl-base perl-modules libsdl-perl libperl-dev \
