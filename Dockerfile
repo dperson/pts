@@ -3,7 +3,7 @@ MAINTAINER David Personette <dperson@dperson.com>
 
 # Install PTS
 RUN export DEBIAN_FRONTEND='noninteractive' && \
-    export url='http://www.phoronix-test-suite.com/releases/repo/pts.debian' &&\
+    export url='http://phoronix-test-suite.com/releases/repo/pts.debian' && \
     export version='6.4.0' && \
     export sha256sum='0b822dc5e2bcd8a9a36c1dc3292228b659749b8a3f3825260b40' && \
     apt-get update -qq && \
