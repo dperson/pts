@@ -16,7 +16,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 mesa-utils php7.0-cli php7.0-gd php7.0-json php7.0-xml \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     echo "downloading phoronix-test-suite_${version}.tgz ..." && \
-    curl -LC- -s ${url}phoronix-test-suite-${vesion} -o pts.tgz && \
+    curl -Ls "${url}phoronix-test-suite-${vesion}" -o pts.tgz && \
     sha256sum pts.tgz | grep -q "$sha256sum" && \
     tar xf pts.tgz && \
     (cd phoronix-test-suite && ./install-sh)
