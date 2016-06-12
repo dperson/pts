@@ -3,19 +3,24 @@ MAINTAINER David Personette <dperson@dperson.com>
 
 # Install PTS
 RUN export DEBIAN_FRONTEND='noninteractive' && \
-    export url='http://phoronix-test-suite.com/releases/repo/pts.debian' && \
+    export url='http://www.phoronix-test-suite.com/download.php?file=' && \
     export version='6.4.0' && \
-    export sha256sum='0b822dc5e2bcd8a9a36c1dc3292228b659749b8a3f3825260b40' && \
+    export sha256sum='9162975f690f9ea17df8f86ce2ee99b979434aea8242485fe2a4' && \
     apt-get update -qq && \
-    apt-get install -qqy --no-install-recommends curl build-essential unzip \
-                perl perl-base perl-modules libsdl-perl libperl-dev \
-                libpcre3-dev mesa-utils php5-cli php5-gd php5-json \
+    apt-get install -qqy --no-install-recommends ca-certificates curl && \
+    echo "deb http://packages.dotdeb.org jessie all" \
+                >>/etc/apt/sources.list.d/dotdeb.list && \
+    curl -Ls https://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
+    apt-get update -qq && \
+    apt-get install -qqy --no-install-recommends build-essential unzip \
+                mesa-utils php7.0-cli php7.0-gd php7.0-json php7.0-xml \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
+    echo "downloading phoronix-test-suite_${version}.tgz ..." && \
+    curl -LC- -s ${url}phoronix-test-suite-${vesion} -o pts.tgz && \
+    sha256sum pts.tgz | grep -q "$sha256sum" && \
+    tar xf pts.tgz && \
+    (cd phoronix-test-suite && ./install-sh)
     apt-get clean && \
-    echo "downloading phoronix-test-suite_${version}_all.deb ..." && \
-    curl -LOC- -s $url/files/phoronix-test-suite_${version}_all.deb && \
-    sha256sum phoronix-test-suite_${version}_all.deb | grep -q "$sha256sum" && \
-    dpkg -i phoronix-test-suite_${version}_all.deb && \
-    rm -rf /var/lib/apt/lists/* /tmp/* phoronix-test-suite_${version}_all.deb
+    rm -rf /var/lib/apt/lists/* /tmp/* /phoronix-test-suite /pts.tgz
 
 CMD phoronix-test-suite
