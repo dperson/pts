@@ -4,8 +4,8 @@ MAINTAINER David Personette <dperson@gmail.com>
 # Install PTS
 RUN export DEBIAN_FRONTEND='noninteractive' && \
     export url='http://www.phoronix-test-suite.com/download.php?file=' && \
-    export version='6.6.0' && \
-    export sha256sum='e4c10a4f45ac022160137f164910d68fd780ab3caaaf0d0d3f59' && \
+    export version='6.6.1' && \
+    export sha256sum='631ceb808d8bd6cebe69c8b711d55090d6880e906a65837f18fa' && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends ca-certificates curl && \
     echo "deb http://packages.dotdeb.org jessie all" \
