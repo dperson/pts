@@ -7,7 +7,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     export version='6.6.1' && \
     export sha256sum='631ceb808d8bd6cebe69c8b711d55090d6880e906a65837f18fa' && \
     apt-get update -qq && \
-    apt-get install -qqy --no-install-recommends ca-certificates curl && \
+    apt-get install -qqy --no-install-recommends ca-certificates curl gnupg2 &&\
     echo "deb http://packages.dotdeb.org stretch all" \
                 >>/etc/apt/sources.list.d/dotdeb.list && \
     curl -Ls https://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
