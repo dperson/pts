@@ -7,8 +7,9 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     export version='6.6.1' && \
     export sha256sum='631ceb808d8bd6cebe69c8b711d55090d6880e906a65837f18fa' && \
     apt-get update -qq && \
-    apt-get install -qqy --no-install-recommends build-essential unzip \
-                mesa-utils php7.0-cli php7.0-gd php7.0-json php7.0-xml \
+    apt-get install -qqy --no-install-recommends ca-certificates curl \
+                build-essential unzip mesa-utils php7.0-cli php7.0-gd \
+                php7.0-json php7.0-xml \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     echo "downloading phoronix-test-suite_${version}.tgz ..." && \
     curl -Ls "${url}phoronix-test-suite-${version}" -o pts.tgz && \
@@ -17,10 +18,5 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     (cd phoronix-test-suite && ./install-sh) && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /phoronix-test-suite /pts.tgz
-    #apt-get update -qq && \
-    #apt-get install -qqy --no-install-recommends ca-certificates curl gnupg1&&\
-    #echo "deb http://packages.dotdeb.org stretch all" \
-    #            >>/etc/apt/sources.list.d/dotdeb.list && \
-    #curl -Ls https://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
 
 CMD phoronix-test-suite
