@@ -9,7 +9,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends ca-certificates curl \
                 build-essential unzip mesa-utils php7.0-cli php7.0-gd \
-                php7.0-json php7.0-xml \
+                php7.0-json php7.0-xml procps \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     echo "downloading phoronix-test-suite_${version}.tgz ..." && \
     curl -Ls "${url}phoronix-test-suite-${version}" -o pts.tgz && \
