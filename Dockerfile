@@ -12,7 +12,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 php7.0-json php7.0-xml procps \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     echo "downloading phoronix-test-suite_${version}.tgz ..." && \
-    curl -Ls "${url}phoronix-test-suite-${version}" -o pts.tgz && \
+    curl -LSs "${url}phoronix-test-suite-${version}" -o pts.tgz && \
     sha256sum pts.tgz | grep -q "$sha256sum" && \
     tar xf pts.tgz && \
     (cd phoronix-test-suite && ./install-sh) && \
