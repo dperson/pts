@@ -11,12 +11,14 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 build-essential unzip mesa-utils php7.0-cli php7.0-gd \
                 php7.0-json php7.0-xml procps \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
-    echo "downloading phoronix-test-suite_${version}.tgz ..." && \
+    file="phoronix-test-suite_${version}.tgz" && \
+    echo "downloading $file ..." && \
     curl -LSs "${url}phoronix-test-suite-${version}" -o pts.tgz && \
-    sha256sum pts.tgz | grep -q "$sha256sum" && \
+    sha256sum pts.tgz | grep -q "$sha256sum" || \
+        { echo "expected $sha1sum, got $(sha1sum pts.tgz)"; exit; } && \
     tar xf pts.tgz && \
     (cd phoronix-test-suite && ./install-sh) && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /phoronix-test-suite /pts.tgz
+    rm -rf /var/lib/apt/lists/* /tmp/* phoronix-test-suite pts.tgz
 
 CMD phoronix-test-suite
