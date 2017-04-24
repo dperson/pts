@@ -15,7 +15,7 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     echo "downloading $file ..." && \
     curl -LSs "${url}phoronix-test-suite-${version}" -o pts.tgz && \
     sha256sum pts.tgz | grep -q "$sha256sum" || \
-        { echo "expected $sha1sum, got $(sha1sum pts.tgz)"; exit; } && \
+        { echo "expected $sha256sum, got $(sha256sum pts.tgz)"; exit 13; } && \
     tar xf pts.tgz && \
     (cd phoronix-test-suite && ./install-sh) && \
     apt-get clean && \
