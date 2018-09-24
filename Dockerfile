@@ -4,8 +4,8 @@ MAINTAINER David Personette <dperson@gmail.com>
 # Install PTS
 RUN export DEBIAN_FRONTEND='noninteractive' && \
     export url='http://phoronix-test-suite.com/releases/' && \
-    export version='7.8.0' && \
-    export sha256sum='cd6c869841f28e4ac1e8a5e4cda05fafce9a523a6b4f0f3a4780' && \
+    export version='8.2.0' && \
+    export sha256sum='d7160df5ab15fbd65ade82c6cc13c02a4826d46eff10113f615e' && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends ca-certificates curl \
                 build-essential unzip mesa-utils php7.0-cli php7.0-gd \
