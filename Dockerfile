@@ -4,12 +4,12 @@ MAINTAINER David Personette <dperson@gmail.com>
 # Install PTS
 RUN export DEBIAN_FRONTEND='noninteractive' && \
     export url='http://phoronix-test-suite.com/releases/' && \
-    export version='9.4.0' && \
-    export sha256sum='296a5df3cf2230d275394020daecea93fcb459e48753de4c5975' && \
+    export version='9.4.1' && \
+    export sha256sum='04e0d1371a661c7f95d81ba5df7291a52a5977d691783eb1eacd' && \
     apt-get update -qq && \
     apt-get install -qqy --no-install-recommends ca-certificates curl \
-                build-essential unzip mesa-utils php7.0-cli php7.0-gd \
-                php7.0-json php7.0-xml procps \
+                build-essential unzip mesa-utils php7.3-cli php7.3-gd \
+                php7.3-json php7.3-xml procps \
                 $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
     echo "downloading phoronix-test-suite-${version}.tar.gz ..." && \
     curl -LSs "${url}phoronix-test-suite-${version}.tar.gz" -o pts.tgz && \
